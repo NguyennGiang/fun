@@ -15,28 +15,20 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = getViewBinding(layoutInflater)
         setContentView(binding.root)
-
-        try {
-            binding.button.setOnClickListener {
-                val drawableResource = when (rollDice()) {
-                    1 -> R.drawable.dice_1
-                    2 -> R.drawable.dice_2
-                    3 -> R.drawable.dice_3
-                    4 -> R.drawable.dice_4
-                    5 -> R.drawable.dice_5
-                    else -> R.drawable.dice_6
-                }
-
-                binding.img.setImageResource(drawableResource)
-            }
-        } catch (e: Exception){
-            e.printStackTrace()
+        var items = mutableListOf<ItemEmail>()
+        repeat(20) {
+            items.add(
+                ItemEmail(
+                    "Support",
+                    "12:34 PM",
+                    "Siêu mạnh mẽ với chip M3, M3 Pro hoặc M3 Max — dòng chip tiên tiến nhất từng được thiết kế cho máy tính cá nhân. Màn hình máy tính xách tay cực đỉnh. Thời lượng pin lên đến 22 giờ.1 Nay có màu Đen Không Gian."
+                )
+            )
         }
+        val adapter = Adapter(items)
+        binding.rcv.adapter = adapter
     }
 
-    private fun rollDice(): Int {
-        return (1..6).random()
-    }
 
     private fun getViewBinding(inflater: LayoutInflater): ActivityMainBinding {
         return ActivityMainBinding.inflate(inflater)

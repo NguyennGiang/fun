@@ -9,4 +9,10 @@ object ContactList {
         }
         contacts.add(contact)
     }
+
+    fun update(contact: Contact) {
+        val exist = contacts.first { it.id == contact.id }
+        contacts.remove(exist)
+        contacts.add(contact)
+    }
 }
